@@ -2,6 +2,8 @@ import json
 import requests
 from config import keys
 
+# Обрабатываем ошибки
+
 class APIException(Exception):
     pass
 
@@ -26,7 +28,7 @@ class ConvertValues:
         except KeyError:
             raise APIException(f'Не удалось обработать валюту "{base}"')
 
-
+# получаем курс валют
         r = requests.get(
             f'https://freecurrencyapi.net/api/v2/latest?apikey=0bc89fc0-6e5c-11ec-bc0f-55a46559fa41&base_currency={quote_ticker}')
         total_base = json.loads(r.content)['data']
